@@ -35,7 +35,7 @@
 
 - Amazon Linux 2にはMariaDBという、MySQL互換のDBサーバーが既にインストールされていますが、これを削除してからMySQL8.0をインストールします。
 - 下記のコマンドを使ってインストールします。
-- 手入力する必要はありません。（不要な手入力は誤入力の元なので、詳細な手順があるときはコピペするのがセオリーです。）
+- 手入力する必要はありません。コードブロックの右上に出るアイコンがコピーボタンです。
 
 ```sh
 # 以下を貼り付け
@@ -111,7 +111,7 @@ mysql -u root -p
   - `sudo service mysql start && sudo service mysql status`で起動と動作確認ができます。
   - ただし現在は8.0が最新なので、そこは意識しておきましょう。
 - 8.0を使いたい場合は必要な場合は次の手順を使ってインストールしてください。
-- 手入力する必要はありません。（不要な手入力は誤入力の元なので、詳細な手順があるときはコピペするのがセオリーです。）
+- 手入力する必要はありません。コードブロックの右上に出るアイコンがコピーボタンです。
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_ubuntu.sh | sh
