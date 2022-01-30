@@ -36,8 +36,8 @@
 curl -fsSL https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_ubuntu.sh | sh
 ```
 
-- Ubuntuでのインストールはガイダンスに従って設定が必要ですが、TABキーでOKにフォーカスしてEnterキーで進めてください。
-- OKと返っていれば次へ進んで構いません。
+- Ubuntuでのインストールはガイダンスに従って設定が必要ですが、カーソルキーでOKをフォーカスしたらEnterキーで進めてください。
+- `OK`と返っていれば次へ進んで構いません。
 
 - その後は以下の通りに進めます。
 
