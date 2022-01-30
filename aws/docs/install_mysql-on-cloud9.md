@@ -39,7 +39,7 @@
 
 ```sh
 # 以下を貼り付け
-curl -fsSL https://hogehoge | sh
+curl -fsSL https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_amazon_linux_2.sh | sh
 ```
 
 - 正常に起動すると、以下のような表示になります。
@@ -114,7 +114,7 @@ mysql -u root -p
 - 手入力する必要はありません。（不要な手入力は誤入力の元なので、詳細な手順があるときはコピペするのがセオリーです。）
 
 ```sh
-curl -fsSL https://hogehoge | sh
+curl -fsSL https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_ubuntu.sh | sh
 ```
 
 - Ubuntuでのインストールはガイダンスに従って設定が必要ですが、TABキーでOKにフォーカスしてEnterキーで進めてください。
