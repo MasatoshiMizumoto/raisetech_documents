@@ -123,7 +123,7 @@ FLUSH PRIVILEGES;
 - 以下の通りに進めてください。
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_initialize | sh
+curl -fsSL https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_initialize.sh | sh
 ```
 
 ### 初期パスワードの入手＆動作確認
