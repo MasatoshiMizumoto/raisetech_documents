@@ -20,6 +20,10 @@ sudo yum remove -y mariadb*
 # 3. `No thanks, just start my download.`と表示されているリンクをコピーして、`$MYSQL_PACKAGE_URL`と差替
 #####################
 
+# GPGキーの更新
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo sed -i -e "s/RPM-GPG-KEY-mysql/RPM-GPG-KEY-mysql-2022/g" /etc/yum.repos.d/mysql-community.repo
+
 # MYSQL_PACKAGE_URL="https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm"
 MYSQL_PACKAGE_URL="https://dev.mysql.com/get/$(curl https://dev.mysql.com/downloads/repo/yum/ | grep el7 | cut -d'(' -f2 | cut -d')' -f1)"
 sudo yum localinstall -y $MYSQL_PACKAGE_URL
