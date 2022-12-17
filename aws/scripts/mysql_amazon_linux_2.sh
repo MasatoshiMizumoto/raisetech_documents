@@ -22,13 +22,17 @@ sudo yum remove -y mariadb*
 
 # GPGキーの更新
 sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
-sudo sed -i -e "s/RPM-GPG-KEY-mysql/RPM-GPG-KEY-mysql-2022/g" /etc/yum.repos.d/mysql-community.repo
+# sudo sed -i -e "s/RPM-GPG-KEY-mysql/RPM-GPG-KEY-mysql-2022/g" /etc/yum.repos.d/mysql-community.repo
 
 # MYSQL_PACKAGE_URL="https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm"
-MYSQL_PACKAGE_URL="https://dev.mysql.com/get/$(curl https://dev.mysql.com/downloads/repo/yum/ | grep el7 | cut -d'(' -f2 | cut -d')' -f1)"
-sudo yum localinstall -y $MYSQL_PACKAGE_URL
+FILENAME="$(curl https://dev.mysql.com/downloads/repo/yum/ | grep el7 | cut -d'(' -f2 | cut -d')' -f1)"
+MYSQL_PACKAGE_URL="https://dev.mysql.com/get/$FILENAME"
+sudo wget $MYSQL_PACKAGE_URL -O /tmp/mysql.rpm
+# sudo yum localinstall -y $MYSQL_PACKAGE_URL
+sudo yum localinstall -y /tmp/mysql.rpm
 sudo yum install -y mysql-community-devel
 sudo yum install -y mysql-community-server
+sudo rm -f /tmp/mysql.rpm
 
 # MySQLサーバーの起動＆確認
 sudo service mysqld start && sudo service mysqld status
