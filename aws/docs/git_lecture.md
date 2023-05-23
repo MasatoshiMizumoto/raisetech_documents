@@ -19,6 +19,10 @@
 
 # Gitの初期設定〜GitHubへのプルリクエスト（PR）まで
 
+- このドキュメントでは、GitとGitHubを使った変更管理の操作を説明します。
+- 操作しながらGitやGitHubの理解を深めてもらうのが目的なので、読むだけでなく、実際に操作を行ってみてください。
+- 途中ローカルPCという表記がありますが、Cloud9を使っている方はCloud9と読み替えていただいて結構です。
+
 ## GitHubのアカウント作成
 
 ｰ [公式サイト](https://docs.github.com/ja/get-started/signing-up-for-github/signing-up-for-a-new-github-account)や他のサイトを見ながら、GitHubアカウントを作成してください。
