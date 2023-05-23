@@ -30,7 +30,7 @@
 ## 1. GitHub のアカウント作成
 
 - [公式サイト](https://docs.github.com/ja/get-started/signing-up-for-github/signing-up-for-a-new-github-account)や他のサイトを見ながら、GitHub アカウントを作成してください。
-- 次の手順で個人メールアドレスを公開したくない場合、受信専用のメールアドレス入手をわすれずに。（授業で説明済）
+- 次の手順で個人メールアドレスを公開したくない場合、GitHub アカウント作成後に確認できる、受信専用のメールアドレス入手をわすれずに。（授業で説明済）
 
 ## 2. Git の初期設定
 
@@ -40,8 +40,14 @@
 ## 3. GitHub 個人アクセストークンの作成
 
 - [公式サイト](https://docs.github.com/ja/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)や他のサイトを見ながら、GitHub 個人アクセストークンを作成してください。
+- 二種類ありますが`Fine-grained personal access tokens`が推奨です。
 - 有効期限は無期限で構いませんが、無くしたり盗まれたりしないようにしてください。
-- 読み取り権限は最初から含まれていますが、書き込み権限は明示的に与える必要があります。忘れるとこの後 push で躓くので注意しましょう。
+- 書き込み権限は明示的に与える必要があります。忘れるとこの後 push で躓くので注意しましょう。以下のいずれかで可能です。
+  - `Fine-grained personal access tokens`の場合
+    - `Repository access`・・・`All repositories`または作成済の操作したいリポジトリを選ぶ
+    - `Permissions`・・・`contents` : `Read and write`
+  - `classic` の場合
+    - リポジトリを条件に含められないので `repo`にチェック。
 
 ## 4. GitHub のリポジトリ作成
 
@@ -53,7 +59,7 @@
 sequenceDiagram
   participant A as ローカルPC
   participant B as GitHub
-  B-->>B: リポジトリ作成
+  B->>B: リポジトリ作成
 ```
 
 ## 5. GitHub リポジトリのクローン
@@ -72,6 +78,7 @@ cd ???
 sequenceDiagram
   participant A as ローカルPC
   participant B as GitHub
+  B-->>B: リポジトリ作成
   B->>A: git clone https://???
   A->>A: cd ???
 ```
@@ -116,7 +123,7 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
+  A-->>B: git checkout -b git-lecture
   B->>B: touch git-lecture.md
 ```
 
@@ -137,8 +144,8 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
   B->>B: git add git-lecture.md
 ```
 
@@ -156,9 +163,9 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
-  B->>B: git add git-lecture.md
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
+  B-->>B: git add git-lecture.md
   B->>B: git commit -m "add git-lecture.md"
 ```
 
@@ -186,10 +193,10 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
-  B->>B: git add git-lecture.md
-  B->>B: git commit -m "add git-lecture.md"
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
+  B-->>B: git add git-lecture.md
+  B-->>B: git commit -m "add git-lecture.md"
   B->>C: git push origin git-lecture
 ```
 
@@ -205,13 +212,13 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
-  B->>B: git add git-lecture.md
-  B->>B: git commit -m "add git-lecture.md"
-  B->>C: git push origin git-lecture
-  C-->>C: プルリクエスト（PR）を作成
-  C-->>C: プルリクエスト（PR）の内容を確認作成
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
+  B-->>B: git add git-lecture.md
+  B-->>B: git commit -m "add git-lecture.md"
+  B-->>C: git push origin git-lecture
+  C->>C: プルリクエスト（PR）を作成
+  C->>C: プルリクエスト（PR）の内容を確認作成
 ```
 
 ## 12. プルリクエスト（PR）のマージ（ブランチ統合）
@@ -224,15 +231,15 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
-  B->>B: git add git-lecture.md
-  B->>B: git commit -m "add git-lecture.md"
-  B->>C: git push origin git-lecture
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
+  B-->>B: git add git-lecture.md
+  B-->>B: git commit -m "add git-lecture.md"
+  B-->>C: git push origin git-lecture
   C-->>C: プルリクエスト（PR）を作成
   C-->>C: プルリクエスト（PR）の内容を確認作成
-  C-->>C: プルリクエスト（PR）のマージ承認
-  B-->>A: マージ
+  C->>C: プルリクエスト（PR）のマージ承認
+  B->>A: マージ
 ```
 
 ## 13. main ブランチでのマージ結果の確認
@@ -254,11 +261,11 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
-  B->>B: git add git-lecture.md
-  B->>B: git commit -m "add git-lecture.md"
-  B->>C: git push origin git-lecture
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
+  B-->>B: git add git-lecture.md
+  B-->>B: git commit -m "add git-lecture.md"
+  B-->>C: git push origin git-lecture
   C-->>C: プルリクエスト（PR）を作成
   C-->>C: プルリクエスト（PR）の内容を確認作成
   C-->>C: プルリクエスト（PR）のマージ承認
@@ -282,16 +289,16 @@ sequenceDiagram
   participant A as main
   participant B as git-lecture
   participant C as GitHub
-  A->>B: git checkout -b git-lecture
-  B->>B: touch git-lecture.md
-  B->>B: git add git-lecture.md
-  B->>B: git commit -m "add git-lecture.md"
-  B->>C: git push origin git-lecture
+  A-->>B: git checkout -b git-lecture
+  B-->>B: touch git-lecture.md
+  B-->>B: git add git-lecture.md
+  B-->>B: git commit -m "add git-lecture.md"
+  B-->>C: git push origin git-lecture
   C-->>C: プルリクエスト（PR）を作成
   C-->>C: プルリクエスト（PR）の内容を確認作成
   C-->>C: プルリクエスト（PR）のマージ承認
   B-->>A: マージ
-  A->>A: git checkout main
+  A-->>A: git checkout main
   A-->>A: ファイルの確認
   B-xB: git branch -d git-lecture
 ```
