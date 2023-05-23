@@ -64,8 +64,8 @@ sequenceDiagram
 - クローン後、リポジトリのディレクトリに移動してください。
 
 ```sh
-$ git clone https://???
-$ cd ???
+git clone https://???
+cd ???
 ```
 
 ```mermaid
@@ -84,10 +84,10 @@ sequenceDiagram
   - `git switch -c git-lecture`
 
 ```sh
-$ git checkout -b git-lecture
+git checkout -b git-lecture
 
 # 以下のコマンドでもOKです。
-$ git switch -c git-lecture
+git switch -c git-lecture
 ```
 
 現在の状態は以下のようになります。
@@ -108,7 +108,7 @@ sequenceDiagram
 - 変更の保存忘れには注意しましょう。
 
 ```sh
-$ touch git-lecture.md
+touch git-lecture.md
 ```
 
 ```mermaid
@@ -126,10 +126,10 @@ sequenceDiagram
 - ステージングは、`git add`コマンドで行います。
 
 ```sh
-$ git add git-lecture.md
+git add git-lecture.md
 
 # すべてのファイルをステージングする場合は、以下のコマンドでもOKです。
-$ git add .
+git add .
 ```
 
 ```mermaid
@@ -148,7 +148,7 @@ sequenceDiagram
 - コミットは、`git commit`コマンドで行います。
 
 ```sh
-$ git commit -m "add git-lecture.md"
+git commit -m "add git-lecture.md"
 ```
 
 ```mermaid
@@ -168,10 +168,10 @@ sequenceDiagram
 - プッシュは、`git push`コマンドで行います。
 
 ```sh
-$ git push origin git-lecture
+git push origin git-lecture
 
 # （参考）git pushまでしか入力せずに実行すると、指定が必要な元先のブランチ名称を教えてくれます
-$ git push
+git push
 ```
 
 ```mermaid
@@ -236,10 +236,10 @@ sequenceDiagram
 - `git-lecture.md`が存在することを確認してください。
 
 ```sh
-$ git checkout main
-$ git pull
-$ ls
-$ cat git-lecture.md
+git checkout main
+git pull
+ls
+cat git-lecture.md
 ```
 
 ```mermaid
@@ -267,7 +267,7 @@ sequenceDiagram
 - ブランチの削除は、`git branch -d`コマンドで行います。
 
 ```sh
-$ git branch -d git-lecture
+git branch -d git-lecture
 ```
 
 ```mermaid
