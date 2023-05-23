@@ -218,7 +218,7 @@ sequenceDiagram
   B-->>B: git commit -m "add git-lecture.md"
   B-->>C: git push origin git-lecture
   C->>C: プルリクエスト（PR）を作成
-  C->>C: プルリクエスト（PR）の内容を確認作成
+  C->>C: プルリクエスト（PR）の内容を確認
 ```
 
 ## 12. プルリクエスト（PR）のマージ（ブランチ統合）
@@ -237,7 +237,7 @@ sequenceDiagram
   B-->>B: git commit -m "add git-lecture.md"
   B-->>C: git push origin git-lecture
   C-->>C: プルリクエスト（PR）を作成
-  C-->>C: プルリクエスト（PR）の内容を確認作成
+  C-->>C: プルリクエスト（PR）の内容を確認
   C->>C: プルリクエスト（PR）のマージ承認
   B->>A: マージ
 ```
@@ -267,7 +267,7 @@ sequenceDiagram
   B-->>B: git commit -m "add git-lecture.md"
   B-->>C: git push origin git-lecture
   C-->>C: プルリクエスト（PR）を作成
-  C-->>C: プルリクエスト（PR）の内容を確認作成
+  C-->>C: プルリクエスト（PR）の内容を確認
   C-->>C: プルリクエスト（PR）のマージ承認
   B-->>A: マージ
   A->>A: git checkout main
@@ -295,7 +295,7 @@ sequenceDiagram
   B-->>B: git commit -m "add git-lecture.md"
   B-->>C: git push origin git-lecture
   C-->>C: プルリクエスト（PR）を作成
-  C-->>C: プルリクエスト（PR）の内容を確認作成
+  C-->>C: プルリクエスト（PR）の内容を確認
   C-->>C: プルリクエスト（PR）のマージ承認
   B-->>A: マージ
   A-->>A: git checkout main
