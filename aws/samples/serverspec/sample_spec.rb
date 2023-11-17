@@ -1,6 +1,3 @@
-# For remote ssh, don't remove this line
-exec("source ~/.bash_profile")
-
 require 'spec_helper'
 
 listen_port = 8080
