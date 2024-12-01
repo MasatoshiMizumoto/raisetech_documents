@@ -1,4 +1,9 @@
 #!/bin/bash
+
+MYSQL_VERSION=??
+RUBY_VERSION=3.2.3
+
+
 set -x
 
 # change to ec2-user
@@ -16,11 +21,18 @@ curl -sSL https://get.rvm.io | bash -s stable
 # add source ~/.rvm/scripts/rvm to ~/.bashrc
 echo 'source ~/.rvm/scripts/rvm' >> ~/.bashrc
 source ~/.bashrc
-rvm install 3.2.3
+rvm install $RUBY_VERSION
 
 # install code-server
 curl -Lk 'https://update.code.visualstudio.com/latest/linux-rpm-x64/stable' --output vscode.rpm
 sudo yum install -y ./vscode.rpm
+
+# install mysql
+sudo dnf -y install https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm
+sudo dnf -y install mysql mysql-community-client
+sudo dnf -y install mysql-community-server
+sudo yum install -y mysql-devel
+sudo systemctl start mysqld
 
 echo """
 
