@@ -1,10 +1,5 @@
 #!/bin/bash
-
-# MYSQL_VERSION=??
-RUBY_VERSION=3.2.3
-
-
-set -ex
+set -x
 
 # change to ec2-user
 sudo su - ec2-user
@@ -21,18 +16,15 @@ sudo su - ec2-user
 # add source ~/.rvm/scripts/rvm to ~/.bashrc
 # echo 'source ~/.rvm/scripts/rvm' >> ~/.bashrc
 # source ~/.bashrc
-# rvm install $RUBY_VERSION
+# rvm install 3.2.3
 
 # install asdf
 sudo dnf -y install git
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
 echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-source ~/.bashrc
 
 # shell reload
-exit
-sudo su - ec2-user
-exec $SHELL -l
+source ~/.bash_profile
 
 ## plugin
 asdf plugin add nodejs
@@ -45,12 +37,13 @@ asdf plugin update ruby
 adsf install nodejs latest
 asdf global nodejs latest
 # install ruby
-asdf install ruby $RUBY_VERSION
-asdf global ruby $RUBY_VERSION
+asdf install ruby 3.2.3
+asdf global ruby 3.2.3
 
 # install code-server
 curl -Lk 'https://update.code.visualstudio.com/latest/linux-rpm-x64/stable' --output vscode.rpm
 sudo dnf -y install ./vscode.rpm
+rm vscode.rpm
 
 # install mysql
 sudo dnf -y install https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm
