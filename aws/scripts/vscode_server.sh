@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 # change to ec2-user
 sudo su - ec2-user
@@ -20,6 +21,16 @@ curl -Lk 'https://update.code.visualstudio.com/latest/linux-rpm-x64/stable' --ou
 sudo yum install -y ./vscode.rpm
 
 echo """
-Install complete.
-Run the following command to start 'code tunnel --accept-server-license-terms',and please authenticate with your github account.
+
+インストールが終了しました。
+'code tunnel --accept-server-license-terms' を起動し、githubアカウントで認証してください。
+'vscode.dev'からアクセスできます。
+サーバーのOSを停止した場合、再度'code tunnel --accept-server-license-terms'を実行してください。
+
+## English
+
+Installation is complete.
+Run 'code tunnel --accept-server-license-terms' and authenticate with your github account.
+You can access it from 'vscode.dev'.
+If you stop the server OS, run 'code tunnel --accept-server-license-terms' again.
 """
