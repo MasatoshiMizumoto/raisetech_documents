@@ -13,6 +13,8 @@ nvm install node
 curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
 curl -sSL https://get.rvm.io | bash -s stable
+# add source ~/.rvm/scripts/rvm to ~/.bashrc
+echo 'source ~/.rvm/scripts/rvm' >> ~/.bashrc
 source ~/.bashrc
 rvm install 3.2.3
 
