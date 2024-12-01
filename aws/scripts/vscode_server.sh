@@ -34,6 +34,9 @@ sudo dnf -y install mysql-community-server
 sudo dnf -y install mysql-devel
 sudo systemctl start mysqld
 
+# install yarn
+npm install -g yarn
+
 echo """
 
 インストールが終了しました。
