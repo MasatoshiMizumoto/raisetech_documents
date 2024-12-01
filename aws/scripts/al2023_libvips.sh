@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo su -
+sudo su - root
 
 INSTALL_DIR=/usr/local
 
