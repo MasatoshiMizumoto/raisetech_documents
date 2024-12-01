@@ -25,7 +25,7 @@ echo """
 インストールが終了しました。
 この後はec2-userに切り替えて作業してください。（例:'sudo su - ec2-user'）
 'code tunnel --accept-server-license-terms' を起動し、表示されたURLと8桁のcodeを使ってこのサーバーをgithubアカウントで認証してください。
-'vscode.dev'からアクセスできるようになります。
+その後、サーバーに表示された'http://vscode.dev/tunnel/****'のURLからアクセスできるようになります。
 サーバーのOSを停止した場合、再度'code tunnel --accept-server-license-terms'を実行してください。
 
 ## English
@@ -33,6 +33,6 @@ echo """
 Installation is complete.
 Switch to ec2-user and work. (e.g. 'sudo su - ec2-user')
 Run 'code tunnel --accept-server-license-terms' and authenticate this server with your github account using the URL and 8-digit code displayed.
-You can access it from 'vscode.dev'.
+After that, you can access the server from the URL 'http://vscode.dev/tunnel/****' displayed on the server.
 If you stop the server OS, run 'code tunnel --accept-server-license-terms' again.
 """
