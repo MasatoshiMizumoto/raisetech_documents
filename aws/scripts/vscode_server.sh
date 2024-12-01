@@ -37,6 +37,10 @@ sudo systemctl start mysqld
 # install yarn
 npm install -g yarn
 
+# Install ImageMagick
+sudo dnf -y install ImageMagick
+sudo dnf -y install ImageMagick-devel
+
 echo """
 
 インストールが終了しました。
