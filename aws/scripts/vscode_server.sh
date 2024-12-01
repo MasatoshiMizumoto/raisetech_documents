@@ -1,9 +1,4 @@
 #!/bin/bash
-
-# MYSQL_VERSION=??
-RUBY_VERSION=3.2.3
-
-
 set -x
 
 sudo dnf update -y
@@ -25,7 +20,7 @@ curl -sSL https://get.rvm.io | bash -s stable
 ## add source ~/.rvm/scripts/rvm to ~/.bashrc
 echo 'source ~/.rvm/scripts/rvm' >> ~/.bashrc
 source ~/.bashrc
-rvm install $RUBY_VERSION
+rvm install 3.2.3
 
 # install code-server
 curl -Lk 'https://update.code.visualstudio.com/latest/linux-rpm-x64/stable' --output vscode.rpm
