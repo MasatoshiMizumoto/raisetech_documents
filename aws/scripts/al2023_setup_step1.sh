@@ -21,12 +21,12 @@ asdf plugin update ruby
 echo """
 
 Step1は完了です。
-EC2を再起動して、改めてStep2のスクリプトを実行してください。
+EC2を再起動（インスタンスを再起動）して、改めてStep2のスクリプトを実行してください。
 
 ## English
 
 Step1 is done.
-After reboot, please run the script for Step2.
+Restart EC2 (restart the instance) and run the Step2 script again.
 
 
 """
