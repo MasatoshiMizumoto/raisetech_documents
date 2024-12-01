@@ -30,6 +30,8 @@ echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 source ~/.bashrc
 
 # shell reload
+exit
+sudo su - ec2-user
 exec $SHELL -l
 
 ## plugin
