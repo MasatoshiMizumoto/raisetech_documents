@@ -23,14 +23,16 @@ sudo yum install -y ./vscode.rpm
 echo """
 
 インストールが終了しました。
-'code tunnel --accept-server-license-terms' を起動し、githubアカウントで認証してください。
-'vscode.dev'からアクセスできます。
+この後はec2-userに切り替えて作業してください。（例:'sudo su - ec2-user'）
+'code tunnel --accept-server-license-terms' を起動し、表示されたURLと8桁のcodeを使ってこのサーバーをgithubアカウントで認証してください。
+'vscode.dev'からアクセスできるようになります。
 サーバーのOSを停止した場合、再度'code tunnel --accept-server-license-terms'を実行してください。
 
 ## English
 
 Installation is complete.
-Run 'code tunnel --accept-server-license-terms' and authenticate with your github account.
+Switch to ec2-user and work. (e.g. 'sudo su - ec2-user')
+Run 'code tunnel --accept-server-license-terms' and authenticate this server with your github account using the URL and 8-digit code displayed.
 You can access it from 'vscode.dev'.
 If you stop the server OS, run 'code tunnel --accept-server-license-terms' again.
 """
