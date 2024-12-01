@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MYSQL_VERSION=??
+# MYSQL_VERSION=??
 RUBY_VERSION=3.2.3
 
 
@@ -10,18 +10,40 @@ set -x
 sudo su - ec2-user
 
 # Install nodejs
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-source ~/.bashrc
-nvm install node
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# source ~/.bashrc
+# nvm install node
 
 # Install rvm
-curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
-curl -sSL https://get.rvm.io | bash -s stable
+# curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+# curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
+# curl -sSL https://get.rvm.io | bash -s stable
 # add source ~/.rvm/scripts/rvm to ~/.bashrc
-echo 'source ~/.rvm/scripts/rvm' >> ~/.bashrc
+# echo 'source ~/.rvm/scripts/rvm' >> ~/.bashrc
+# source ~/.bashrc
+# rvm install $RUBY_VERSION
+
+# install asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
+echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 source ~/.bashrc
-rvm install $RUBY_VERSION
+
+# shell reload
+exec $SHELL -l
+
+## plugin
+asdf plugin add nodejs
+asdf plugin update nodejs
+asdf plugin add ruby
+asdf plugin update ruby
+
+
+# install nodejs
+adsf install nodejs latest
+asdf global nodejs latest
+# install ruby
+asdf install ruby $RUBY_VERSION
+asdf global ruby $RUBY_VERSION
 
 # install code-server
 curl -Lk 'https://update.code.visualstudio.com/latest/linux-rpm-x64/stable' --output vscode.rpm
