@@ -20,15 +20,13 @@ asdf plugin update ruby
 
 echo """
 
-サーバーを再起動します。
-再起動後、Step2のスクリプトを実行してください。
+Step1は完了です。
+EC2を再起動して、改めてStep2のスクリプトを実行してください。
 
 ## English
 
-This server will be rebooted.
+Step1 is done.
 After reboot, please run the script for Step2.
 
-"""
 
-sleep 10
-sudo reboot
+"""
