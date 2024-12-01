@@ -24,6 +24,7 @@ sudo su - ec2-user
 # rvm install $RUBY_VERSION
 
 # install asdf
+sudo dnf -y install git
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
 echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 source ~/.bashrc
