@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo su -
+
 INSTALL_DIR=/usr/local
 
 if [ ! -e ${INSTALL_DIR}/bin/vips ]; then
