@@ -31,3 +31,4 @@ After reboot, please run the script for Step2.
 """
 
 sleep 10
+sudo reboot
