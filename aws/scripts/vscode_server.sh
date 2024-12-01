@@ -4,7 +4,7 @@
 RUBY_VERSION=3.2.3
 
 
-set -x
+set -ex
 
 # change to ec2-user
 sudo su - ec2-user
