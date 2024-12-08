@@ -60,8 +60,19 @@ Outputs:
     Value: !Ref RaiseTechStudyInstance
     Export:
       Name: !Sub ${AWS::StackName}-InstanceId
+  InstanceURL:
+    Description: InstanceURL of the AL2023 study instance
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#Instances:instanceId=${RaiseTechStudyInstance}
+    Export:
+      Name: !Sub ${AWS::StackName}-InstanceURL
   SecurityGroupId:
     Description: SecurityGroupId of the AL2023 study instance
     Value: !Ref RaiseTechStudySecurityGroup
     Export:
       Name: !Sub ${AWS::StackName}-SecurityGroupId
+  SecurityGroupURL:
+    Description: SecurityGroupURL of the AL2023 study instance
+    # https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#SecurityGroup:groupId=sg-095de98e0c910b023
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#SecurityGroup:groupId=${RaiseTechStudySecurityGroup}
+    Export:
+      Name: !Sub ${AWS::StackName}-SecurityGroupURL
