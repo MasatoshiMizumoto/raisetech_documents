@@ -24,8 +24,8 @@ Resources:
       IamInstanceProfile: !Ref RaiseTechStudyInstanceProfile
   RaiseTechStudyInstanceRole:
     Type: AWS::IAM::Role
-    RoleName: RaiseTechStudyInstanceRole
     Properties:
+      RoleName: RaiseTechStudyInstanceRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
