@@ -41,7 +41,7 @@ Resources:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Roles:
-        - !Ref RaiseTechStudyRole
+        - !Ref RaiseTechStudyInstanceRole
       InstanceProfileName: RaiseTechStudyInstanceProfile
 
   RaiseTechStudySecurityGroup:
