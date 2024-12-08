@@ -44,11 +44,11 @@ RaiseTech で課題学習を行う方
 > この手順は、皆さんの序盤の脱落を防ぐ為に環境構築を支援するものです。本来自分で調べていただきたいとを自動化しており、何をしているかもわかりにくくなっています。あくまで RaiseTech 学習カリキュラムの序盤においてのみ使用してください。
 
 > [!WARNING]
-> AWSフルコースの学習コンテンツはなるべくAWS無料利用枠に収まるように調整していますが、すべての課題が無料ではありません。この資料内で構築されるAWSリソースを1ヶ月間起動した場合、主に以下のリソース費用が無料利用枠と相殺され、超過分がクレジットカードから引き落とされます。
-> 1. EC2インスタンス（t3.small）=720時間/月
-> 2. EBSボリューム（8GB）=720時間/月
-> 3. パブリックIPアドレス=720時間/月
-
+> AWS フルコースの学習コンテンツはなるべく AWS 無料利用枠に収まるように調整していますが、すべての課題が無料ではありません。この資料内で構築される AWS リソースを 1 ヶ月間起動した場合、主に以下のリソース費用が無料利用枠と相殺され、超過分がクレジットカードから引き落とされます。
+>
+> 1. EC2 インスタンス（t3.small）=720 時間/月
+> 2. EBS ボリューム（8GB）=720 時間/月
+> 3. パブリック IP アドレス=720 時間/月
 
 > [!CAUTION]
 > この手順から流用したものをそのまま最終課題まで流用することは禁止します。IT 業界が求めている「自走力」を得られないままに最終課題を終えも、皆さんの殆どは目的を果たせないでしょう。
@@ -116,22 +116,28 @@ aws cloudformation describe-stacks --stack-name al2023-study-instances --query '
 
 ### 4-2. RaiseTech 学習用コンピューターへの接続
 
-1. 4-1 の CloudShell 画面に出ているうち、`CfnStackURL` の URL リンクをブラウザの新しいタブ（またはウィンドウ）に入力してください。CloudFormationスタックの出力ページが開きます。
+1. 4-1 の CloudShell 画面に出ているうち、`CfnStackURL` の URL リンクをブラウザの新しいタブ（またはウィンドウ）に入力してください。CloudFormation スタックの出力ページが開きます。
 2. 「InstanceURL」のリンクをクリックし、遷移したページの「接続」ボタンをクリックしてください。
 
 > [!TIP]
-> SecurityGroupURLはこの段階では使いませんが、Railsアプリケーションの接続許可設定を行う際に必要になります。
+> SecurityGroupURL はこの段階では使いませんが、Rails アプリケーションの接続許可設定を行う際に必要になります。
 
 ### 4-3. サンプルコード動作環境のセットアップ
 
-1. 表示された画面に以下のコマンドを貼り付けします。
+1. 表示された画面に以下のコマンドを貼り付けします。1、2 と順番に行ってください。
 
 ```sh
+#1
 curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/refs/heads/main/aws/scripts/al2023_dev_ec2_with_vscode_server.sh' | bash
+```
+
+```sh
+#2
 curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/refs/heads/main/aws/scripts/al2023_libvips.sh' | bash
 ```
+
 > [!NOTE]
-> インストールはしばらくかかります。20分で一度画面が終了する場合がありますが、その場合は再度接続してコマンドを入力してください。
+> インストールはしばらくかかります。20 分で一度画面が終了する場合がありますが、その場合は再度接続してコマンドを入力してください。
 
 > [!TIP]
 > 上記コマンドでは、後の課題に必要なライブラリやツールを裏側でインストールしています。
@@ -143,7 +149,7 @@ curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_document
 > - libvips
 > - vscode-server
 
-1. コマンドが完了すると、VS Code server を起動する手順の「メッセージ」が表示されます。指示にしたがって VS Code server を起動してください。
+2. コマンドが完了すると、VS Code server を起動する手順の「メッセージ」が表示されます。指示にしたがって VS Code server を起動してください。
 
 > [!IMPORTANT]
 > このメッセージは一度だけ表示されます。必要に応じてメモを取ってください。
@@ -153,10 +159,15 @@ curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_document
 >
 > 1. 表示されているメッセージに従い、コマンドを実行します。
 > 2. 表示された URL と認証コードをブラウザに入力します。GitHub へのログインが必要です。
-> 3. VS Code server が起動し、接続用の URL が表示されます。
->
-> この URL にアクセスすることで、ブラウザ版の VS Code に接続できます。
-> 必要に応じて EC2 のフォルダを開けますので、Ruby のコードで HelloWorld を書いたり、課題のアプリケーションを起動できるか確認してください。
+> 3. VS Code server の起動が完了すると、接続用の URL が表示されます。
+> 4. この URL にアクセスすることで、ブラウザ版の VS Code に接続できます。トンネル作成に使われたアカウントについて聞かれた場合は、「GitHub」を選択してください。
+
+> [!WARNING]
+> 今回作成した EC2 はパブリック IP アドレスが不定のため、ブラウザ版の VS Code をブックマークしても無効です。毎回 EC2のセッションマネージャーから起動してください。
+
+> [!TIP]
+> ブラウザ版の VS Code では必要に応じて EC2 のフォルダを開けます。ターミナルを表示させて Ruby のコードで HelloWorld を書いたり、課題のアプリケーション clone してからフォルダを開けるか確認してください。
+
 
 ## 5. トラブルが発生したら
 
