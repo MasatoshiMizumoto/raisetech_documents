@@ -28,9 +28,13 @@ RaiseTech で課題学習を行う方
 
 ### 2-2. 動作環境
 
-- AWS アカウント
-- GitHub アカウント
-- Web ブラウザ（Google Chrome、Microsoft Edge など）
+- 必須
+  - AWS アカウント
+  - GitHub アカウント
+  - Web ブラウザ（Google Chrome、Microsoft Edge など）
+- 推奨
+  - PCに VS Code をインストールしている
+  - VS Code の設定をGitHub と同期している
 
 ## 3. 注意事項、禁止事項
 
