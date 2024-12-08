@@ -54,6 +54,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Security group for the AL2023 study instance
+      GroupName: RaiseTechStudySecurityGroup
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '3000'
@@ -61,21 +62,11 @@ Resources:
           CidrIp: 0.0.0.0/0
 
 Outputs:
-  InstanceId:
-    Description: InstanceId of the AL2023 study instance
-    Value: !Ref RaiseTechStudyInstance
-    Export:
-      Name: !Sub ${AWS::StackName}-InstanceId
   InstanceURL:
     Description: InstanceURL of the AL2023 study instance
     Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#InstanceDetails:instanceId=${RaiseTechStudyInstance}
     Export:
       Name: !Sub ${AWS::StackName}-InstanceURL
-  SecurityGroupId:
-    Description: SecurityGroupId of the AL2023 study instance
-    Value: !Ref RaiseTechStudySecurityGroup
-    Export:
-      Name: !Sub ${AWS::StackName}-SecurityGroupId
   SecurityGroupURL:
     Description: SecurityGroupURL of the AL2023 study instance
     Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#SecurityGroup:groupId=${RaiseTechStudySecurityGroup.GroupId}
