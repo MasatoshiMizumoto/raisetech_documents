@@ -22,6 +22,12 @@ Resources:
       InstanceType: !Ref AL2023StudyInstanceType
       ImageId: !Ref AL2023LatestAmiId
       IamInstanceProfile: !Ref RaiseTechStudyInstanceProfile
+      SecurityGroupIds:
+        - !Ref RaiseTechStudySecurityGroup
+      Tags:
+        - Key: Name
+          Value: AL2023StudyInstance
+
   RaiseTechStudyInstanceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -62,7 +68,7 @@ Outputs:
       Name: !Sub ${AWS::StackName}-InstanceId
   InstanceURL:
     Description: InstanceURL of the AL2023 study instance
-    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#Instances:instanceId=${RaiseTechStudyInstance}
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#InstanceDetails:instanceId=${RaiseTechStudyInstance}
     Export:
       Name: !Sub ${AWS::StackName}-InstanceURL
   SecurityGroupId:
@@ -73,6 +79,6 @@ Outputs:
   SecurityGroupURL:
     Description: SecurityGroupURL of the AL2023 study instance
     # https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#SecurityGroup:groupId=sg-095de98e0c910b023
-    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#SecurityGroup:groupId=${RaiseTechStudySecurityGroup}
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#SecurityGroup:groupId=${!GetAtt RaiseTechStudySecurityGroup.GroupId}
     Export:
       Name: !Sub ${AWS::StackName}-SecurityGroupURL
