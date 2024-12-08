@@ -60,9 +60,14 @@ Resources:
         - IpProtocol: tcp
           FromPort: '3000'
           ToPort: '3000'
-          CidrIp: 0.0.0.0/0
+          CidrIp: '127.0.0.1/32'
 
 Outputs:
+  CfnStackURL:
+    Description: CloudFormation Stack URL
+    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/cloudformation/home?region=${AWS::Region}#/stacks/outputs?filteringStatus=active&viewNested=true&stackId=${AWS::StackId}
+    Export:
+      Name: !Sub ${AWS::StackName}-CfnStackURL
   InstanceURL:
     Description: InstanceURL of the AL2023 study instance
     Value: !Sub https://${AWS::Region}.console.aws.amazon.com/ec2/home?region=${AWS::Region}#InstanceDetails:instanceId=${RaiseTechStudyInstance}
