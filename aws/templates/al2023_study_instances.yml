@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  This template creates the resources required to run the AL2023 study instances.
+  - IAM Role for the AL2023 study instance
+  - EC2 Instance profile for SSM access
+  - EC2 Instance for the AL2023 study on Default VPC
+  - Security Group for the AL2023 study instance
+
+Parameters:
+  AL2023StudyInstanceType:
+    Type: String
+    Default: t3.small
+    Description: The instance type for the AL2023 study instance
+  AL2023LatestAmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-minimal-kernel-default-x86_64
+
+Resources:
+  RaiseTechStudyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref AL2023StudyInstanceType
+      ImageId: !Ref AL2023LatestAmiId
+      IamInstanceProfile: !Ref RaiseTechStudyInstanceProfile
+  RaiseTechStudyInstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+    RoleName: RaiseTechStudyInstanceRole
+
+  RaiseTechStudyInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref RaiseTechStudyRole
+      InstanceProfileName: RaiseTechStudyInstanceProfile
+
+  RaiseTechStudySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for the AL2023 study instance
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '3000'
+          ToPort: '3000'
+          CidrIp: 0.0.0.0/0
+
+Outputs:
+  InstanceId:
+    Description: InstanceId of the AL2023 study instance
+    Value: !Ref RaiseTechStudyInstance
+    Export:
+      Name: !Sub ${AWS::StackName}-InstanceId
+  SecurityGroupId:
+    Description: SecurityGroupId of the AL2023 study instance
+    Value: !Ref RaiseTechStudySecurityGroup
+    Export:
+      Name: !Sub ${AWS::StackName}-SecurityGroupId
