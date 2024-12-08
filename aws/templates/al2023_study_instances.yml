@@ -39,7 +39,6 @@ Resources:
             Principal:
               Service:
                 - ec2.amazonaws.com
-                - ssm.amazonaws.com
             Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
