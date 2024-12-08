@@ -78,10 +78,36 @@ aws cloudformation describe-stacks --stack-name al2023-study-instances --query '
 
 ```
 
-**サンプル**
+
 
 > [!NOTE]
+> **サンプル**
+> 
 > すべてのコマンドが正常終了したときに出てくるメッセージのサンプルです。
+> ```json
+> [
+>   [
+>     {
+>       "OutputKey": "CfnStackURL",
+>       "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/outputs?filteringStatus=active&viewNested=true&stackId=arn:aws:cloudformation:ap-northeast-1:123412341234:stack/al2023-study-instances/b543c710-b56f-11ef-bde0-06808a396929",
+>       "Description": "CloudFormation Stack URL",
+>       "ExportName": "al2023-study-instances-CfnStackURL"
+>     },
+>     {
+>       "OutputKey": "SecurityGroupURL",
+>       "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#SecurityGroup:groupId=sg-03a1bff6894048190",
+>       "Description": "SecurityGroupURL of the AL2023 study instance",
+>       "ExportName": "al2023-study-instances-SecurityGroupURL"
+>     },
+>     {
+>       "OutputKey": "InstanceURL",
+>       "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#InstanceDetails:instanceId=i-093a1f61d787e6d6a",
+>       "Description": "InstanceURL of the AL2023 study instance",
+>       "ExportName": "al2023-study-instances-InstanceURL"
+>     }
+>   ]
+> ]
+> ```
 
 > [!WARNING]
 > サンプル記載メッセージの URL は皆さんの環境では無効です。ご自身の環境で出力された URL を使用してください。
@@ -89,30 +115,7 @@ aws cloudformation describe-stacks --stack-name al2023-study-instances --query '
 > [!IMPORTANT]
 > CfnStackURL に記されている URL が、CloudFormation（自動化サービス） のスタック（とあるグルーピング単位）の URL です。このセクションに表示されている URL をブラウザに貼り付けることで、他のセクションの URL はリンク形式で確認できます。
 
-```json
-[
-  [
-    {
-      "OutputKey": "CfnStackURL",
-      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/outputs?filteringStatus=active&viewNested=true&stackId=arn:aws:cloudformation:ap-northeast-1:123412341234:stack/al2023-study-instances/b543c710-b56f-11ef-bde0-06808a396929",
-      "Description": "CloudFormation Stack URL",
-      "ExportName": "al2023-study-instances-CfnStackURL"
-    },
-    {
-      "OutputKey": "SecurityGroupURL",
-      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#SecurityGroup:groupId=sg-03a1bff6894048190",
-      "Description": "SecurityGroupURL of the AL2023 study instance",
-      "ExportName": "al2023-study-instances-SecurityGroupURL"
-    },
-    {
-      "OutputKey": "InstanceURL",
-      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#InstanceDetails:instanceId=i-093a1f61d787e6d6a",
-      "Description": "InstanceURL of the AL2023 study instance",
-      "ExportName": "al2023-study-instances-InstanceURL"
-    }
-  ]
-]
-```
+
 
 ### 4-2. RaiseTech 学習用コンピューターへの接続
 
@@ -153,6 +156,14 @@ curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_document
 
 > [!IMPORTANT]
 > このメッセージは一度だけ表示されます。必要に応じてメモを取ってください。
+
+> [!NOTE]
+> **サンプルメッセージの一部**
+> ```sh
+> インストールが終了しました。
+> この後はec2-userに切り替えて作業してください。
+> （中略）
+> ```
 
 > [!TIP]
 > 表示されている指示の大まかな流れは以下です。
