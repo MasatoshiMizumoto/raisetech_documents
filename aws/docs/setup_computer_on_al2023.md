@@ -8,7 +8,7 @@
       1. [4-1. 事前準備](#4-1-事前準備)
       2. [4-2. RaiseTech 学習用コンピューターへの接続](#4-2-raisetech-学習用コンピューターへの接続)
       3. [4-3. サンプルコード動作環境のセットアップ](#4-3-サンプルコード動作環境のセットアップ)
-   5. [5. トラブル発生用](#5-トラブル発生用)
+   5. [5. トラブルが発生したら](#5-トラブルが発生したら)
       1. [5-1. EC2 インスタンスが起動しない](#5-1-ec2-インスタンスが起動しない)
       2. [5-2. セッションマネージャーで接続できない](#5-2-セッションマネージャーで接続できない)
       3. [5-3. VS Code server が起動しない](#5-3-vs-code-server-が起動しない)
@@ -35,12 +35,20 @@ RaiseTech で課題学習を行う方
 ## 3. 注意事項、禁止事項
 
 > [!NOTE]
-> すべての資料は日本語で作成しています。日本語が母国語でない方は、翻訳ツールを使用してください。If you are not a native Japanese speaker, please use a translation tool.<br>
+> すべての資料は日本語で作成しています。日本語が母国語でない方は、翻訳ツールを使用してください。If you are not a native Japanese speaker, please use a translation tool.
+
+> [!NOTE]
 > 必要なものはすべて自動化によってインストールされますが、すべての作業工程が省略されるわけではありません。たとえば MySQL 自体はインストールされていますが、パスワードの再設定などは行っていません。
 
 > [!WARNING]
-> この手順は、皆さんの序盤の脱落を防ぐ為に環境構築を支援するものです。本来自分で調べていただきたいとを自動化しており、何をしているかもわかりにくくなっています。あくまで RaiseTech 学習カリキュラムの序盤においてのみ使用してください。<br>
-> RaiseTech で提供している学習コンテンツの AWS 操作は、無料利用枠の対象外の操作も含まれています。そのため、AWS アカウントを使用する際は、課金についての理解を深めてから操作を行ってください
+> この手順は、皆さんの序盤の脱落を防ぐ為に環境構築を支援するものです。本来自分で調べていただきたいとを自動化しており、何をしているかもわかりにくくなっています。あくまで RaiseTech 学習カリキュラムの序盤においてのみ使用してください。
+
+> [!WARNING]
+> AWSフルコースの学習コンテンツはなるべくAWS無料利用枠に収まるように調整していますが、すべての課題が無料ではありません。この資料内で構築されるAWSリソースを1ヶ月間起動した場合、主に以下のリソース費用が無料利用枠と相殺され、超過分がクレジットカードから引き落とされます。
+> 1. EC2インスタンス（t3.small）=720時間/月
+> 2. EBSボリューム（8GB）=720時間/月
+> 3. パブリックIPアドレス=720時間/月
+
 
 > [!CAUTION]
 > この手順から流用したものをそのまま最終課題まで流用することは禁止します。IT 業界が求めている「自走力」を得られないままに最終課題を終えも、皆さんの殆どは目的を果たせないでしょう。
@@ -72,21 +80,33 @@ aws cloudformation describe-stacks --stack-name al2023-study-instances --query '
 
 **サンプル**
 
+> [!NOTE]
+> すべてのコマンドが正常終了したときに出てくるメッセージのサンプルです。
+
+> [!WARNING]
+> サンプル記載メッセージの URL は皆さんの環境では無効です。ご自身の環境で出力された URL を使用してください。
+
 > [!IMPORTANT]
-> すべてのコマンドが正常終了したときに出てくるメッセージのサンプルです。実際のメッセージは異なります。
+> CfnStackURL に記されている URL が、CloudFormation（自動化サービス） のスタック（とあるグルーピング単位）の URL です。このセクションに表示されている URL をブラウザに貼り付けることで、他のセクションの URL はリンク形式で確認できます。
 
 ```json
 [
   [
     {
+      "OutputKey": "CfnStackURL",
+      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/outputs?filteringStatus=active&viewNested=true&stackId=arn:aws:cloudformation:ap-northeast-1:123412341234:stack/al2023-study-instances/b543c710-b56f-11ef-bde0-06808a396929",
+      "Description": "CloudFormation Stack URL",
+      "ExportName": "al2023-study-instances-CfnStackURL"
+    },
+    {
       "OutputKey": "SecurityGroupURL",
-      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#SecurityGroup:groupId=sg-0166a9997a251bbd4",
+      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#SecurityGroup:groupId=sg-03a1bff6894048190",
       "Description": "SecurityGroupURL of the AL2023 study instance",
       "ExportName": "al2023-study-instances-SecurityGroupURL"
     },
     {
       "OutputKey": "InstanceURL",
-      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#InstanceDetails:instanceId=i-026c10adf88e66b22",
+      "OutputValue": "https://ap-northeast-1.console.aws.amazon.com/ec2/home?region=ap-northeast-1#InstanceDetails:instanceId=i-093a1f61d787e6d6a",
       "Description": "InstanceURL of the AL2023 study instance",
       "ExportName": "al2023-study-instances-InstanceURL"
     }
@@ -96,8 +116,11 @@ aws cloudformation describe-stacks --stack-name al2023-study-instances --query '
 
 ### 4-2. RaiseTech 学習用コンピューターへの接続
 
-1. 4-1 の CloudShell 画面に出ているうち、`InstanceURL` の URL リンクをブラウザの新しいタブ（またはウィンドウ）に入力してください。EC2 インスタンスの詳細画面が開きます。
-2. 「接続」ボタンをクリックし、遷移したページの「接続」を押すことで、SSM セッションマネージャーを使って EC2 に接続できます。
+1. 4-1 の CloudShell 画面に出ているうち、`CfnStackURL` の URL リンクをブラウザの新しいタブ（またはウィンドウ）に入力してください。CloudFormationスタックの出力ページが開きます。
+2. 「InstanceURL」のリンクをクリックし、遷移したページの「接続」ボタンをクリックしてください。
+
+> [!TIP]
+> SecurityGroupURLはこの段階では使いませんが、Railsアプリケーションの接続許可設定を行う際に必要になります。
 
 ### 4-3. サンプルコード動作環境のセットアップ
 
@@ -107,6 +130,8 @@ aws cloudformation describe-stacks --stack-name al2023-study-instances --query '
 curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/refs/heads/main/aws/scripts/al2023_dev_ec2_with_vscode_server.sh' | bash
 curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/refs/heads/main/aws/scripts/al2023_libvips.sh' | bash
 ```
+> [!NOTE]
+> インストールはしばらくかかります。20分で一度画面が終了する場合がありますが、その場合は再度接続してコマンドを入力してください。
 
 > [!TIP]
 > 上記コマンドでは、後の課題に必要なライブラリやツールを裏側でインストールしています。
@@ -118,7 +143,7 @@ curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_document
 > - libvips
 > - vscode-server
 
-2. コマンドが完了すると、VS Code server を起動する手順の「メッセージ」が表示されます。指示にしたがって VS Code server を起動してください。
+1. コマンドが完了すると、VS Code server を起動する手順の「メッセージ」が表示されます。指示にしたがって VS Code server を起動してください。
 
 > [!IMPORTANT]
 > このメッセージは一度だけ表示されます。必要に応じてメモを取ってください。
@@ -133,7 +158,7 @@ curl -o- 'https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_document
 > この URL にアクセスすることで、ブラウザ版の VS Code に接続できます。
 > 必要に応じて EC2 のフォルダを開けますので、Ruby のコードで HelloWorld を書いたり、課題のアプリケーションを起動できるか確認してください。
 
-## 5. トラブル発生用
+## 5. トラブルが発生したら
 
 ### 5-1. EC2 インスタンスが起動しない
 
